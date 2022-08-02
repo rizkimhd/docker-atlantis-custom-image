@@ -24,3 +24,7 @@ RUN apk del gcompat \
     && find /usr/local/aws-cli/v2/current/dist/awscli/botocore/data -name examples-1.json -delete \
     && apk --no-cache del binutils curl \
     && rm -rf /var/cache/apk/*
+
+ARG PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugins_cache"
+RUN mkdir -p ${PLUGIN_CACHE_DIR}
+ENV TF_PLUGIN_CACHE_DIR="${PLUGIN_CACHE_DIR}"
